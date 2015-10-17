@@ -23,37 +23,37 @@ public class CoffeeBeans extends Coffee {
 
 	@Override
 	public String toString() {
-		String rtnStr = "Зерновой кофе \"" + super.getName() + "\" ";
+		String rtnStr = "Р—РµСЂРЅРѕРІРѕР№ РєРѕС„Рµ \"" + super.getName() + "\" ";
 		switch (sizeCoffeeBeans) {
 		case SIEVE_12:
-			rtnStr += "(Очень мелкое зерно). ";
+			rtnStr += "(РћС‡РµРЅСЊ РјРµР»РєРѕРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_13:
-			rtnStr += "(Мелкое зерно). ";
+			rtnStr += "(РњРµР»РєРѕРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_14:
-			rtnStr += "(Малое зерно). ";
+			rtnStr += "(РњР°Р»РѕРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_15:
-			rtnStr += "(Среднее зерно). ";
+			rtnStr += "(РЎСЂРµРґРЅРµРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_16:
-			rtnStr += "(Хорошее зерно). ";
+			rtnStr += "(РҐРѕСЂРѕС€РµРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_17:
-			rtnStr += "(Достаточно большое зерно). ";
+			rtnStr += "(Р”РѕСЃС‚Р°С‚РѕС‡РЅРѕ Р±РѕР»СЊС€РѕРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_18:
-			rtnStr += "(Большое зерно). ";
+			rtnStr += "(Р‘РѕР»СЊС€РѕРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_19:
-			rtnStr += "(Экстра большое зерно). ";
+			rtnStr += "(Р­РєСЃС‚СЂР° Р±РѕР»СЊС€РѕРµ Р·РµСЂРЅРѕ). ";
 			break;
 		case SIEVE_20:
-			rtnStr += "(Очень зерно). ";
+			rtnStr += "(РћС‡РµРЅСЊ Р·РµСЂРЅРѕ). ";
 			break;
 		}
-		rtnStr += " " + super.getCaffeine() + " мл кофеина. Цена: " + super.getPrice() + " KZT.";
+		rtnStr += " " + super.getCaffeine() + " РјР» РєРѕС„РµРёРЅР°. Р¦РµРЅР°: " + super.getPrice() + " KZT.";
 		return rtnStr;
 	}
 }

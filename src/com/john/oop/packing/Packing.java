@@ -43,19 +43,19 @@ public class Packing {
 		String rtnStr = "";
 		switch (material) {
 		case PAPER:
-			rtnStr += "Бумажная упаковка";
+			rtnStr += "Р‘СѓРјР°Р¶РЅР°СЏ СѓРїР°РєРѕРІРєР°";
 			break;
 		case FOIL:
-			rtnStr += "Фольгированная упаковка";
+			rtnStr += "Р¤РѕР»СЊРіРёСЂРѕРІР°РЅРЅР°СЏ СѓРїР°РєРѕРІРєР°";
 			break;
 		case GLASS:
-			rtnStr += "Стеклянная упаковка";
+			rtnStr += "РЎС‚РµРєР»СЏРЅРЅР°СЏ СѓРїР°РєРѕРІРєР°";
 			break;
 		default:
 			break;
 		}
-		rtnStr += "(Нетто - " + capacity + "г.;Брутто - "
-				+ (weightOfPacking + capacity) + "г.). ";
+		rtnStr += "(РќРµС‚С‚Рѕ - " + capacity + "Рі.;Р‘СЂСѓС‚С‚Рѕ - "
+				+ (weightOfPacking + capacity) + "Рі.). ";
 		rtnStr += coffee.toString();
 		return rtnStr;
 	}

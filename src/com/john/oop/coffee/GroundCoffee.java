@@ -22,22 +22,22 @@ public class GroundCoffee extends Coffee {
 
 	@Override
 	public String toString() {
-		String rtnStr = "Молотый кофе \"" + super.getName() + "\" ";
+		String rtnStr = "РњРѕР»РѕС‚С‹Р№ РєРѕС„Рµ \"" + super.getName() + "\" ";
 		switch (grinding) {
 		case COARSE:
-			rtnStr += "грубого помола. ";
+			rtnStr += "РіСЂСѓР±РѕРіРѕ РїРѕРјРѕР»Р°. ";
 			break;
 		case MIDDLE_GROUND:
-			rtnStr += "среднего помола. ";
+			rtnStr += "СЃСЂРµРґРЅРµРіРѕ РїРѕРјРѕР»Р°. ";
 			break;
 		case FINE_GRINDING:
-			rtnStr += "тонкого помола. ";
+			rtnStr += "С‚РѕРЅРєРѕРіРѕ РїРѕРјРѕР»Р°. ";
 			break;
 		case SUPERFINE_GRINDING:
-			rtnStr += "сверхтонкого помола. ";
+			rtnStr += "СЃРІРµСЂС…С‚РѕРЅРєРѕРіРѕ РїРѕРјРѕР»Р°. ";
 			break;
 		}
-		rtnStr += " " + super.getCaffeine() + " мл кофеина. Цена: " + super.getPrice() + " KZT.";
+		rtnStr += " " + super.getCaffeine() + " РјР» РєРѕС„РµРёРЅР°. Р¦РµРЅР°: " + super.getPrice() + " KZT.";
 		return rtnStr;
 	}
 }

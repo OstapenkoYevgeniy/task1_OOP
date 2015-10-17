@@ -23,19 +23,19 @@ public class InstantCoffee extends Coffee {
 
 	@Override
 	public String toString() {
-		String rtnStr = "Растворимый кофе \"" + super.getName() + "\" ";
+		String rtnStr = "Р Р°СЃС‚РІРѕСЂРёРјС‹Р№ РєРѕС„Рµ \"" + super.getName() + "\" ";
 		switch (modeOfProduction) {
 		case GRANULATED:
-			rtnStr += "(Гранулированный). ";
+			rtnStr += "(Р“СЂР°РЅСѓР»РёСЂРѕРІР°РЅРЅС‹Р№). ";
 			break;
 		case SPRAY_DRYDEN:
-			rtnStr += "(Спрей-драйд). ";
+			rtnStr += "(РЎРїСЂРµР№-РґСЂР°Р№Рґ). ";
 			break;
 		case SUBLIMATED:
-			rtnStr += "(Сублимированный). ";
+			rtnStr += "(РЎСѓР±Р»РёРјРёСЂРѕРІР°РЅРЅС‹Р№). ";
 			break;
 		}
-		rtnStr += " " + super.getCaffeine() + " мл кофеина. Цена: "
+		rtnStr += " " + super.getCaffeine() + " РјР» РєРѕС„РµРёРЅР°. Р¦РµРЅР°: "
 				+ super.getPrice() + " KZT.";
 		return rtnStr;
 	}
