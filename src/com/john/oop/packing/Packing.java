@@ -10,39 +10,54 @@ public class Packing {
 	private Material material;
 	private int capacity; // grams
 	private int weightOfPacking; // grams
-	private int price;
 	private Coffee coffee = null;
-	
+
 	public Packing(Material material, int capacity, int weightOfPacking) {
 		this.material = material;
 		this.capacity = capacity;
 		this.weightOfPacking = weightOfPacking;
 	}
 
-	private final void manufacturePackaging() {
+	public Material getMaterial() {
+		return material;
+	}
 
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public int getWeightOfPacking() {
+		return weightOfPacking;
 	}
 
 	public Coffee getCoffee() {
 		return coffee;
 	}
-	
-	public Material getMaterial() {
-		return material;
-	}
-	
-	public int getCapacity() {
-		return capacity;
-	}
-	
+
 	public void setCoffee(Coffee coffee) {
 		this.coffee = coffee;
 	}
 
 	@Override
 	public String toString() {
-		return material + " - " + capacity + " - " + weightOfPacking;
+		String rtnStr = "";
+		switch (material) {
+		case PAPER:
+			rtnStr += "Бумажная упаковка";
+			break;
+		case FOIL:
+			rtnStr += "Фольгированная упаковка";
+			break;
+		case GLASS:
+			rtnStr += "Стеклянная упаковка";
+			break;
+		default:
+			break;
+		}
+		rtnStr += "(Нетто - " + capacity + "г.;Брутто - "
+				+ (weightOfPacking + capacity) + "г.). ";
+		rtnStr += coffee.toString();
+		return rtnStr;
 	}
-	
-	
+
 }

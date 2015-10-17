@@ -3,18 +3,18 @@ package com.john.oop.coffee;
 public abstract class Coffee {
 
 	private String name;
-	private float price;
-	private int caffeine; // mg/l
+	private int price; // KZT
+	private int caffeine; // mg
 	
 	public String getName() {
 		return name;
 	}
 
-	public float getPrice() {
+	public int getPrice() {
 		return price;
 	}
 	
-	public float getCaffeine() {
+	public int getCaffeine() {
 		return caffeine;
 	}
 
@@ -24,14 +24,14 @@ public abstract class Coffee {
 		}
 	}
 
-	public void setPrice(float price) {
-		if (price < 0) {
+	public void setPrice(int price) {
+		if (price > 0) {
 			this.price = price;
 		}
 	}
 	
 	public void setCaffeine(int caffeine) {
-		if (caffeine < 0) {
+		if (caffeine > 0) {
 			this.caffeine = caffeine;
 		}
 	}
