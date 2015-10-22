@@ -10,7 +10,7 @@ public class Packing {
 	private Material material;
 	private int capacity; // grams
 	private int weightOfPacking; // grams
-	private Coffee coffee = null;
+	private Coffee coffee;
 
 	public Packing(Material material, int capacity, int weightOfPacking) {
 		this.material = material;
@@ -41,19 +41,22 @@ public class Packing {
 	@Override
 	public String toString() {
 		String rtnStr = "";
+		
 		switch (material) {
 		case PAPER:
-			rtnStr += "Бумажная упаковка";
+			rtnStr += "Бумажная упаковка ";
 			break;
 		case FOIL:
-			rtnStr += "Фольгированная упаковка";
+			rtnStr += "Фольгированная упаковка ";
 			break;
 		case GLASS:
-			rtnStr += "Стеклянная упаковка";
+			rtnStr += "Стеклянная упаковка ";
 			break;
+		default:
+			throw new RuntimeException("Invalid value");
 		}
-		rtnStr += "(Нетто - " + capacity + "г.;Брутто - "
-				+ (weightOfPacking + capacity) + "г.). ";
+		
+		rtnStr += "(Нетто - " + capacity + "г.;Брутто - " + (weightOfPacking + capacity) + "г.). ";
 		rtnStr += coffee.toString();
 		return rtnStr;
 	}

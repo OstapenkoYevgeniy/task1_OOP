@@ -16,7 +16,6 @@ public abstract class GenerationTools {
 
 	private final static int AMOUNT_OF_ONE_GRAM = 2;
 
-	@SuppressWarnings("serial")
 	private static List<String> arrayCoffeeName = new ArrayList<String>() {
 		{
 			add("Jacobs");
@@ -28,7 +27,6 @@ public abstract class GenerationTools {
 		}
 	};
 
-	@SuppressWarnings("serial")
 	private static List<Integer> arrayCapacityPaperPackaging = new ArrayList<Integer>() {
 		{
 			add(140);
@@ -37,7 +35,7 @@ public abstract class GenerationTools {
 			add(450);
 		}
 	};
-	@SuppressWarnings("serial")
+
 	private static List<Integer> arrayWeightPaperPackaging = new ArrayList<Integer>() {
 		{
 			add(20);
@@ -46,7 +44,7 @@ public abstract class GenerationTools {
 			add(65);
 		}
 	};
-	@SuppressWarnings("serial")
+
 	private static List<Integer> arrayCapacityFoilPackaging = new ArrayList<Integer>() {
 		{
 			add(250);
@@ -55,7 +53,7 @@ public abstract class GenerationTools {
 			add(700);
 		}
 	};
-	@SuppressWarnings("serial")
+
 	private static List<Integer> arrayWeightFoilPackaging = new ArrayList<Integer>() {
 		{
 			add(40);
@@ -64,7 +62,7 @@ public abstract class GenerationTools {
 			add(100);
 		}
 	};
-	@SuppressWarnings("serial")
+
 	private static List<Integer> arrayCapacityGlassPackaging = new ArrayList<Integer>() {
 		{
 			add(500);
@@ -74,7 +72,7 @@ public abstract class GenerationTools {
 			add(1700);
 		}
 	};
-	@SuppressWarnings("serial")
+
 	private static List<Integer> arrayWeightGlassPackaging = new ArrayList<Integer>() {
 		{
 			add(165);
@@ -84,10 +82,6 @@ public abstract class GenerationTools {
 			add(560);
 		}
 	};
-
-	private static int getRandomInteger(int min, int max) {
-		return min + (int) (Math.random() * (max + 1));
-	}
 
 	public static Packing getRandomPacking() {
 		Material material = null;
@@ -111,24 +105,25 @@ public abstract class GenerationTools {
 			weightOfPacking = arrayWeightGlassPackaging.get(getRandomInteger(0, 4));
 			break;
 		}
-
 		return new Packing(material, capacity, weightOfPacking);
 	}
 
 	public static List<Packing> fillRandomCoffe(List<Packing> arrayPacking) {
 		String name = null;
-		int caffeine = 0;
 		SizeCoffeeBeans sizeCoffeeBeans = null;
 		Grinding grinding = null;
 		ModeOfProduction modeOfProduction = null;
 		int price = 0;
+		int caffeine = 0;
+
 		for (int i = 0; i < arrayPacking.size(); i++) {
 			name = null;
-			caffeine = 0;
 			sizeCoffeeBeans = null;
 			grinding = null;
 			modeOfProduction = null;
 			price = 0;
+			caffeine = 0;
+
 			switch (getRandomInteger(0, 2)) {
 			case 0:
 				name = arrayCoffeeName.get(getRandomInteger(0, 5));
@@ -138,6 +133,7 @@ public abstract class GenerationTools {
 				price += arrayPacking.get(i).getWeightOfPacking()
 						* getAmountOfOneGrammPacking(arrayPacking.get(i).getMaterial());
 				price += price * getCoefficientSizeCoffeeBeans(sizeCoffeeBeans);
+
 				arrayPacking.get(i).setCoffee(new CoffeeBeans(name, price, caffeine, sizeCoffeeBeans));
 				break;
 			case 1:
@@ -148,6 +144,7 @@ public abstract class GenerationTools {
 				price += arrayPacking.get(i).getWeightOfPacking()
 						* getAmountOfOneGrammPacking(arrayPacking.get(i).getMaterial());
 				price += price * getCoefficientGrinding(grinding);
+
 				arrayPacking.get(i).setCoffee(new GroundCoffee(name, price, caffeine, grinding));
 				break;
 			case 2:
@@ -158,12 +155,17 @@ public abstract class GenerationTools {
 				price += arrayPacking.get(i).getWeightOfPacking()
 						* getAmountOfOneGrammPacking(arrayPacking.get(i).getMaterial());
 				price += price * getCoefficientModeOfProduction(modeOfProduction);
+
 				arrayPacking.get(i).setCoffee(new InstantCoffee(name, price, caffeine, modeOfProduction));
 				break;
 			}
 
 		}
 		return arrayPacking;
+	}
+
+	private static int getRandomInteger(int min, int max) {
+		return min + (int) (Math.random() * (max + 1));
 	}
 
 	private static ModeOfProduction getRandomModeOfProduktion() {
@@ -175,35 +177,7 @@ public abstract class GenerationTools {
 		case 2:
 			return ModeOfProduction.GRANULATED;
 		default:
-			return null;
-		}
-	}
-
-	private static float getCoefficientModeOfProduction(ModeOfProduction modeOfProduction) {
-		switch (modeOfProduction) {
-		case SPRAY_DRYDEN:
-			return 1.1F;
-		case GRANULATED:
-			return 1.2F;
-		case SUBLIMATED:
-			return 1.3F;
-		default:
-			return 0;
-		}
-	}
-
-	private static float getCoefficientGrinding(Grinding grinding) {
-		switch (grinding) {
-		case COARSE:
-			return 1.1F;
-		case MIDDLE_GROUND:
-			return 1.2F;
-		case FINE_GRINDING:
-			return 1.2F;
-		case SUPERFINE_GRINDING:
-			return 1.3F;
-		default:
-			return 0;
+			throw new RuntimeException("Invalid value");
 		}
 	}
 
@@ -228,35 +202,35 @@ public abstract class GenerationTools {
 		case SIEVE_20:
 			return 1.9F;
 		default:
-			return 0;
+			throw new RuntimeException("Invalid value");
 		}
 	}
 
-	private static int getAmountOfOneGrammPacking(Material material) {
-		switch (material) {
-		case PAPER:
-			return 1;
-		case FOIL:
-			return 3;
-		case GLASS:
-			return 4;
+	private static float getCoefficientModeOfProduction(ModeOfProduction modeOfProduction) {
+		switch (modeOfProduction) {
+		case SPRAY_DRYDEN:
+			return 1.1F;
+		case GRANULATED:
+			return 1.2F;
+		case SUBLIMATED:
+			return 1.3F;
 		default:
-			return 0;
+			throw new RuntimeException("Invalid value");
 		}
 	}
 
-	private static Grinding getRandomGroundCoffee() {
-		switch (getRandomInteger(0, 3)) {
-		case 0:
-			return Grinding.COARSE;
-		case 1:
-			return Grinding.MIDDLE_GROUND;
-		case 2:
-			return Grinding.FINE_GRINDING;
-		case 3:
-			return Grinding.SUPERFINE_GRINDING;
+	private static float getCoefficientGrinding(Grinding grinding) {
+		switch (grinding) {
+		case COARSE:
+			return 1.1F;
+		case MIDDLE_GROUND:
+			return 1.2F;
+		case FINE_GRINDING:
+			return 1.2F;
+		case SUPERFINE_GRINDING:
+			return 1.3F;
 		default:
-			return null;
+			throw new RuntimeException("Invalid value");
 		}
 	}
 
@@ -285,22 +259,31 @@ public abstract class GenerationTools {
 		}
 	}
 
-	private float getCoefficient(String value) {
-		switch (value) {
-		case "Jacobs":
-			return (float) 1;
-		case "Tchibo":
-			return (float) 1.1;
-		case "Maxwell House":
-			return (float) 1.2;
-		case "Jardin":
-			return (float) 1.3;
-		case "Moccona":
-			return (float) 1.4;
-		case "Nescafe":
-			return (float) 1.5;
+	private static int getAmountOfOneGrammPacking(Material material) {
+		switch (material) {
+		case PAPER:
+			return 1;
+		case FOIL:
+			return 3;
+		case GLASS:
+			return 4;
 		default:
-			return -1;
+			throw new RuntimeException("Invalid value");
+		}
+	}
+
+	private static Grinding getRandomGroundCoffee() {
+		switch (getRandomInteger(0, 3)) {
+		case 0:
+			return Grinding.COARSE;
+		case 1:
+			return Grinding.MIDDLE_GROUND;
+		case 2:
+			return Grinding.FINE_GRINDING;
+		case 3:
+			return Grinding.SUPERFINE_GRINDING;
+		default:
+			throw new RuntimeException("Invalid value");
 		}
 	}
 }

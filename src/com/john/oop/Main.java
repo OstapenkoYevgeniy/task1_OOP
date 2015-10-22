@@ -16,26 +16,32 @@ import com.john.oop.сomparators.SortedByPriceToBrutto;
 
 public class Main {
 	public static void main(String[] args) {
-		List<Packing> arrayPacking = fillListPacking(50);
-		InformationTools.showInfoPacking(arrayPacking);
-
-		arrayPacking = GenerationTools.fillRandomCoffe(arrayPacking);
-		arrayPacking.sort(new SortedByPriceToBrutto());
-		//InformationTools.showInfoPackingOfCoffee(arrayPacking);
+		// Создаем упаковки кофе для сортировки и заполняем их
+		List<Packing> packingsForSorting = fillListPacking(20);
+		InformationTools.showInfoPacking(packingsForSorting);
+		
+		packingsForSorting = GenerationTools.fillRandomCoffe(packingsForSorting);
+		InformationTools.showInfoPackingOfCoffee(packingsForSorting);
+		
+		packingsForSorting.sort(new SortedByPriceToBrutto());
+		InformationTools.showInfoPackingOfCoffee(packingsForSorting);
+		
+		// Создаем упаковки кофе для поиска и заполняем их
+		List<Packing> packingsForSearch = fillListPacking(10_000);
+		packingsForSearch = GenerationTools.fillRandomCoffe(packingsForSearch);
 
 		Search searchQuery = new SearchBuilder()
-//				.searchInGrinding(Grinding.SUPERFINE_GRINDING)
-//				.searchInSizeCoffeeBeans(SizeCoffeeBeans.SIEVE_12)
-//				.searchInModeOfProduction(ModeOfProduction.SUBLIMATED)
-//				.searchInPriceMore(2000)
-//				.searchInPriceLess(3000)
-//				.searchInCaffeineMore(600)
-//				.searchInCaffeineLess(800)
+				.searchInGrinding(Grinding.SUPERFINE_GRINDING)
+				.searchInSizeCoffeeBeans(SizeCoffeeBeans.SIEVE_12)
+				.searchInModeOfProduction(ModeOfProduction.SUBLIMATED)
+				.searchInPriceLess(9000)
+				.searchInCaffeineMore(500)
 				.searchInMaterial(Material.GLASS)
-				//.searchInName("Jacobs")
+				.searchInBruttoMore(1000)
+				.searchInName("Jacobs")
 				.build();
 
-		List<Packing> resultSearch = searchQuery.find(arrayPacking);
+		List<Packing> resultSearch = searchQuery.find(packingsForSearch);
 		InformationTools.showInfoPackingOfCoffee(resultSearch);
 	}
 
@@ -46,5 +52,4 @@ public class Main {
 		}
 		return arrayPacking;
 	}
-
 }

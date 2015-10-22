@@ -100,5 +100,4 @@ public abstract class InformationTools {
 		System.out.println("Стеклянная тара (объем - 1700 г.; масса - 560): " + glass1700 + " шт.");
 		System.out.println("------------------------------------------");
 	}
-
 }

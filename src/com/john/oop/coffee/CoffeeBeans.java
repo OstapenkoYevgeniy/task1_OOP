@@ -1,7 +1,5 @@
 package com.john.oop.coffee;
 
-import com.john.oop.coffee.GroundCoffee.Grinding;
-
 public class CoffeeBeans extends Coffee {
 	public static enum SizeCoffeeBeans {
 		SIEVE_20, SIEVE_19, SIEVE_18, SIEVE_17, SIEVE_16, SIEVE_15, SIEVE_14, SIEVE_13, SIEVE_12
@@ -31,6 +29,7 @@ public class CoffeeBeans extends Coffee {
 	@Override
 	public String toString() {
 		String rtnStr = "Зерновой кофе \"" + super.getName() + "\" ";
+
 		switch (sizeCoffeeBeans) {
 		case SIEVE_12:
 			rtnStr += "(Очень мелкое зерно). ";
@@ -59,7 +58,10 @@ public class CoffeeBeans extends Coffee {
 		case SIEVE_20:
 			rtnStr += "(Очень большое зерно). ";
 			break;
+		default:
+			throw new RuntimeException("Invalid value");
 		}
+
 		rtnStr += " " + super.getCaffeine() + " мл кофеина. Цена: " + super.getPrice() + " KZT.";
 		return rtnStr;
 	}

@@ -1,7 +1,5 @@
 package com.john.oop.coffee;
 
-import com.john.oop.coffee.CoffeeBeans.SizeCoffeeBeans;
-
 public class InstantCoffee extends Coffee {
 	public static enum ModeOfProduction {
 		SUBLIMATED, SPRAY_DRYDEN, GRANULATED
@@ -19,7 +17,7 @@ public class InstantCoffee extends Coffee {
 	public ModeOfProduction getModeOfProduction() {
 		return modeOfProduction;
 	}
-	
+
 	public void setCaffeine(int caffeine) {
 		if (caffeine >= 310 && caffeine <= 480) {
 			super.setCaffeine(caffeine);
@@ -31,6 +29,7 @@ public class InstantCoffee extends Coffee {
 	@Override
 	public String toString() {
 		String rtnStr = "Растворимый кофе \"" + super.getName() + "\" ";
+		
 		switch (modeOfProduction) {
 		case GRANULATED:
 			rtnStr += "(Гранулированный). ";
@@ -41,7 +40,10 @@ public class InstantCoffee extends Coffee {
 		case SUBLIMATED:
 			rtnStr += "(Сублимированный). ";
 			break;
+		default:
+			throw new RuntimeException("Invalid value");
 		}
+		
 		rtnStr += " " + super.getCaffeine() + " мл кофеина. Цена: " + super.getPrice() + " KZT.";
 		return rtnStr;
 	}

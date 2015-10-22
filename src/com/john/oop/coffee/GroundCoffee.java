@@ -17,7 +17,7 @@ public class GroundCoffee extends Coffee {
 	public Grinding getGrinding() {
 		return grinding;
 	}
-	
+
 	public void setCaffeine(int caffeine) {
 		if (caffeine >= 380 && caffeine <= 650) {
 			super.setCaffeine(caffeine);
@@ -25,10 +25,11 @@ public class GroundCoffee extends Coffee {
 			throw new RuntimeException("Invalid value");
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		String rtnStr = "Молотый кофе \"" + super.getName() + "\" ";
+		
 		switch (grinding) {
 		case COARSE:
 			rtnStr += "грубого помола. ";
@@ -42,7 +43,10 @@ public class GroundCoffee extends Coffee {
 		case SUPERFINE_GRINDING:
 			rtnStr += "сверхтонкого помола. ";
 			break;
+		default:
+			throw new RuntimeException("Invalid value");
 		}
+		
 		rtnStr += " " + super.getCaffeine() + " мл кофеина. Цена: " + super.getPrice() + " KZT.";
 		return rtnStr;
 	}
