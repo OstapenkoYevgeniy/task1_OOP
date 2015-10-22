@@ -14,12 +14,18 @@ public class GroundCoffee extends Coffee {
 		this.grinding = grinding;
 	}
 
+	public Grinding getGrinding() {
+		return grinding;
+	}
+	
 	public void setCaffeine(int caffeine) {
 		if (caffeine >= 380 && caffeine <= 650) {
 			super.setCaffeine(caffeine);
+		} else {
+			throw new RuntimeException("Invalid value");
 		}
 	}
-
+	
 	@Override
 	public String toString() {
 		String rtnStr = "Молотый кофе \"" + super.getName() + "\" ";

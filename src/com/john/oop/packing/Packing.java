@@ -51,13 +51,10 @@ public class Packing {
 		case GLASS:
 			rtnStr += "Стеклянная упаковка";
 			break;
-		default:
-			break;
 		}
 		rtnStr += "(Нетто - " + capacity + "г.;Брутто - "
 				+ (weightOfPacking + capacity) + "г.). ";
 		rtnStr += coffee.toString();
 		return rtnStr;
 	}
-
 }

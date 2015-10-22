@@ -1,6 +1,7 @@
 package com.john.oop.tools;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.john.oop.coffee.CoffeeBeans;
 import com.john.oop.coffee.CoffeeBeans.SizeCoffeeBeans;
@@ -11,12 +12,12 @@ import com.john.oop.coffee.InstantCoffee.ModeOfProduction;
 import com.john.oop.packing.Packing;
 import com.john.oop.packing.Packing.Material;
 
-public class GenerationTools {
+public abstract class GenerationTools {
 
 	private final static int AMOUNT_OF_ONE_GRAM = 2;
 
 	@SuppressWarnings("serial")
-	private static ArrayList<String> arrayCoffeeName = new ArrayList<String>() {
+	private static List<String> arrayCoffeeName = new ArrayList<String>() {
 		{
 			add("Jacobs");
 			add("Tchibo");
@@ -28,7 +29,7 @@ public class GenerationTools {
 	};
 
 	@SuppressWarnings("serial")
-	private static ArrayList<Integer> arrayCapacityPaperPackaging = new ArrayList<Integer>() {
+	private static List<Integer> arrayCapacityPaperPackaging = new ArrayList<Integer>() {
 		{
 			add(140);
 			add(250);
@@ -37,7 +38,7 @@ public class GenerationTools {
 		}
 	};
 	@SuppressWarnings("serial")
-	private static ArrayList<Integer> arrayWeightPaperPackaging = new ArrayList<Integer>() {
+	private static List<Integer> arrayWeightPaperPackaging = new ArrayList<Integer>() {
 		{
 			add(20);
 			add(35);
@@ -46,7 +47,7 @@ public class GenerationTools {
 		}
 	};
 	@SuppressWarnings("serial")
-	private static ArrayList<Integer> arrayCapacityFoilPackaging = new ArrayList<Integer>() {
+	private static List<Integer> arrayCapacityFoilPackaging = new ArrayList<Integer>() {
 		{
 			add(250);
 			add(350);
@@ -55,7 +56,7 @@ public class GenerationTools {
 		}
 	};
 	@SuppressWarnings("serial")
-	private static ArrayList<Integer> arrayWeightFoilPackaging = new ArrayList<Integer>() {
+	private static List<Integer> arrayWeightFoilPackaging = new ArrayList<Integer>() {
 		{
 			add(40);
 			add(60);
@@ -64,7 +65,7 @@ public class GenerationTools {
 		}
 	};
 	@SuppressWarnings("serial")
-	private static ArrayList<Integer> arrayCapacityGlassPackaging = new ArrayList<Integer>() {
+	private static List<Integer> arrayCapacityGlassPackaging = new ArrayList<Integer>() {
 		{
 			add(500);
 			add(700);
@@ -74,7 +75,7 @@ public class GenerationTools {
 		}
 	};
 	@SuppressWarnings("serial")
-	private static ArrayList<Integer> arrayWeightGlassPackaging = new ArrayList<Integer>() {
+	private static List<Integer> arrayWeightGlassPackaging = new ArrayList<Integer>() {
 		{
 			add(165);
 			add(230);
@@ -84,8 +85,8 @@ public class GenerationTools {
 		}
 	};
 
-	public static int getRandomInteger(int min, int max) {
-		return min + (int)(Math.random()*max);
+	private static int getRandomInteger(int min, int max) {
+		return min + (int) (Math.random() * (max + 1));
 	}
 
 	public static Packing getRandomPacking() {
@@ -114,113 +115,7 @@ public class GenerationTools {
 		return new Packing(material, capacity, weightOfPacking);
 	}
 
-	public static void showInfoPacking(ArrayList<Packing> array) {
-		int paper140 = 0;
-		int paper250 = 0;
-		int paper350 = 0;
-		int paper450 = 0;
-		int foil250 = 0;
-		int foil350 = 0;
-		int foil450 = 0;
-		int foil700 = 0;
-		int glass500 = 0;
-		int glass700 = 0;
-		int glass1000 = 0;
-		int glass1500 = 0;
-		int glass1700 = 0;
-
-		for (int i = 0; i < array.size(); i++) {
-			switch (array.get(i).getMaterial()) {
-			case PAPER:
-				switch (array.get(i).getCapacity()) {
-				case 140:
-					paper140++;
-					break;
-				case 250:
-					paper250++;
-					break;
-				case 350:
-					paper350++;
-					break;
-				case 450:
-					paper450++;
-					break;
-				}
-				break;
-			case FOIL:
-				switch (array.get(i).getCapacity()) {
-				case 250:
-					foil250++;
-					break;
-				case 350:
-					foil350++;
-					break;
-				case 450:
-					foil450++;
-					break;
-				case 700:
-					foil700++;
-					break;
-				}
-				break;
-			case GLASS:
-				switch (array.get(i).getCapacity()) {
-				case 500:
-					glass500++;
-					break;
-				case 700:
-					glass700++;
-					break;
-				case 1000:
-					glass1000++;
-					break;
-				case 1500:
-					glass1500++;
-					break;
-				case 1700:
-					glass1700++;
-					break;
-				}
-				break;
-			}
-		}
-		System.out.println("Информация об упаковках:");
-		System.out.println("Бумажная упаковка (объем - 140 г.; масса - 20): "
-				+ paper140 + " шт.");
-		System.out.println("Бумажная упаковка (объем - 250 г.; масса - 35): "
-				+ paper250 + " шт.");
-		System.out.println("Бумажная упаковка (объем - 350 г.; масса - 45): "
-				+ paper350 + " шт.");
-		System.out.println("Бумажная упаковка (объем - 450 г.; масса - 65): "
-				+ paper450 + " шт.");
-
-		System.out
-				.println("Фольгированная упаковка (объем - 250 г.; масса - 40): "
-						+ foil250 + " шт.");
-		System.out
-				.println("Фольгированная упаковка (объем - 350 г.; масса - 60): "
-						+ foil350 + " шт.");
-		System.out
-				.println("Фольгированная упаковка (объем - 450 г.; масса - 75): "
-						+ foil450 + " шт.");
-		System.out
-				.println("Фольгированная упаковка (объем - 700 г.; масса - 100): "
-						+ foil700 + " шт.");
-
-		System.out.println("Стеклянная тара (объем - 500 г.; масса - 165): "
-				+ glass500 + " шт.");
-		System.out.println("Стеклянная тара (объем - 700 г.; масса - 230): "
-				+ glass700 + " шт.");
-		System.out.println("Стеклянная тара (объем - 1000 г.; масса - 330): "
-				+ glass1000 + " шт.");
-		System.out.println("Стеклянная тара (объем - 1500 г.; масса - 500): "
-				+ glass1500 + " шт.");
-		System.out.println("Стеклянная тара (объем - 1700 г.; масса - 560): "
-				+ glass1700 + " шт.");
-	}
-
-	public static ArrayList<Packing> fillRandomCoffe(
-			ArrayList<Packing> arrayPacking) {
+	public static List<Packing> fillRandomCoffe(List<Packing> arrayPacking) {
 		String name = null;
 		int caffeine = 0;
 		SizeCoffeeBeans sizeCoffeeBeans = null;
@@ -241,13 +136,9 @@ public class GenerationTools {
 				sizeCoffeeBeans = getRandomSizeCoffeeBeans();
 				price = arrayPacking.get(i).getCapacity() * AMOUNT_OF_ONE_GRAM;
 				price += arrayPacking.get(i).getWeightOfPacking()
-						* getAmountOfOneGrammPacking(arrayPacking.get(i)
-								.getMaterial());
+						* getAmountOfOneGrammPacking(arrayPacking.get(i).getMaterial());
 				price += price * getCoefficientSizeCoffeeBeans(sizeCoffeeBeans);
-				arrayPacking.get(i)
-						.setCoffee(
-								new CoffeeBeans(name, price, caffeine,
-										sizeCoffeeBeans));
+				arrayPacking.get(i).setCoffee(new CoffeeBeans(name, price, caffeine, sizeCoffeeBeans));
 				break;
 			case 1:
 				name = arrayCoffeeName.get(getRandomInteger(0, 5));
@@ -255,11 +146,9 @@ public class GenerationTools {
 				grinding = getRandomGroundCoffee();
 				price = arrayPacking.get(i).getCapacity() * AMOUNT_OF_ONE_GRAM;
 				price += arrayPacking.get(i).getWeightOfPacking()
-						* getAmountOfOneGrammPacking(arrayPacking.get(i)
-								.getMaterial());
+						* getAmountOfOneGrammPacking(arrayPacking.get(i).getMaterial());
 				price += price * getCoefficientGrinding(grinding);
-				arrayPacking.get(i).setCoffee(
-						new GroundCoffee(name, price, caffeine, grinding));
+				arrayPacking.get(i).setCoffee(new GroundCoffee(name, price, caffeine, grinding));
 				break;
 			case 2:
 				name = arrayCoffeeName.get(getRandomInteger(0, 5));
@@ -267,13 +156,9 @@ public class GenerationTools {
 				modeOfProduction = getRandomModeOfProduktion();
 				price = arrayPacking.get(i).getCapacity() * AMOUNT_OF_ONE_GRAM;
 				price += arrayPacking.get(i).getWeightOfPacking()
-						* getAmountOfOneGrammPacking(arrayPacking.get(i)
-								.getMaterial());
-				price += price
-						* getCoefficientModeOfProduction(modeOfProduction);
-				arrayPacking.get(i).setCoffee(
-						new InstantCoffee(name, price, caffeine,
-								modeOfProduction));
+						* getAmountOfOneGrammPacking(arrayPacking.get(i).getMaterial());
+				price += price * getCoefficientModeOfProduction(modeOfProduction);
+				arrayPacking.get(i).setCoffee(new InstantCoffee(name, price, caffeine, modeOfProduction));
 				break;
 			}
 
@@ -294,8 +179,7 @@ public class GenerationTools {
 		}
 	}
 
-	private static float getCoefficientModeOfProduction(
-			ModeOfProduction modeOfProduction) {
+	private static float getCoefficientModeOfProduction(ModeOfProduction modeOfProduction) {
 		switch (modeOfProduction) {
 		case SPRAY_DRYDEN:
 			return 1.1F;
@@ -323,8 +207,7 @@ public class GenerationTools {
 		}
 	}
 
-	private static float getCoefficientSizeCoffeeBeans(
-			SizeCoffeeBeans sizeCoffeeBeans) {
+	private static float getCoefficientSizeCoffeeBeans(SizeCoffeeBeans sizeCoffeeBeans) {
 		switch (sizeCoffeeBeans) {
 		case SIEVE_12:
 			return 1.1F;
@@ -359,12 +242,6 @@ public class GenerationTools {
 			return 4;
 		default:
 			return 0;
-		}
-	}
-
-	public static void showInfoPackingOfCoffee(ArrayList<Packing> arrayPacking) {
-		for (int i = 0; i < arrayPacking.size(); i++) {
-			System.out.println(arrayPacking.get(i).toString());
 		}
 	}
 
@@ -404,7 +281,7 @@ public class GenerationTools {
 		case 8:
 			return CoffeeBeans.SizeCoffeeBeans.SIEVE_20;
 		default:
-			return null;
+			throw new RuntimeException("Invalid data");
 		}
 	}
 

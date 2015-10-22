@@ -1,0 +1,162 @@
+package com.john.oop.search;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import com.john.oop.coffee.GroundCoffee;
+import com.john.oop.coffee.CoffeeBeans;
+import com.john.oop.coffee.CoffeeBeans.SizeCoffeeBeans;
+import com.john.oop.coffee.GroundCoffee.Grinding;
+import com.john.oop.coffee.InstantCoffee;
+import com.john.oop.coffee.InstantCoffee.ModeOfProduction;
+import com.john.oop.packing.Packing;
+import com.john.oop.packing.Packing.Material;
+
+public class Search {
+	private Grinding grinding;
+	private SizeCoffeeBeans sizeCoffeeBeans;
+	private ModeOfProduction modeOfProduction;
+	
+	private String name;
+	private int priceMore;
+	private int priceLess;
+	private int caffeineMore;
+	private int caffeineLess;
+	
+	private Material material;
+
+	public void setGrinding(Grinding grinding) {
+		this.grinding = grinding;
+	}
+
+	public void setSizeCoffeeBeans(SizeCoffeeBeans sizeCoffeeBeans) {
+		this.sizeCoffeeBeans = sizeCoffeeBeans;
+	}
+
+	public void setModeOfProduction(ModeOfProduction modeOfProduction) {
+		this.modeOfProduction = modeOfProduction;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPriceMore(int priceMore) {
+		this.priceMore = priceMore;
+	}
+
+	public void setPriceLess(int priceLess) {
+		this.priceLess = priceLess;
+	}
+
+	public void setCaffeineMore(int caffeineMore) {
+		this.caffeineMore = caffeineMore;
+	}
+
+	public void setCaffeineLess(int caffeineLess) {
+		this.caffeineLess = caffeineLess;
+	}
+
+	
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+	public List<Packing> find(List<Packing> packings) {
+		List<Packing> result = new ArrayList<Packing>();
+
+		for (Packing packing : packings) {
+			boolean isGrinding = false;
+			boolean isSizeCoffeeBeans = false;
+			boolean isModeOfProduction = false;
+			
+			boolean isMaterial = false;
+			
+			boolean isName = false;
+
+			boolean isPrice = false;
+			boolean isPriceMore = false;
+			boolean isPriceLess = false;
+
+			boolean isCaffeine = false;
+			boolean isCaffeineMore = false;
+			boolean isCaffeineLess = false;
+			if (grinding != null) {
+				if (packing.getCoffee().getClass() == GroundCoffee.class) {
+					GroundCoffee groundCoffee = (GroundCoffee) packing.getCoffee();
+					isGrinding = groundCoffee.getGrinding() == grinding;
+				}
+			}
+			if (sizeCoffeeBeans != null) {
+				if (packing.getCoffee().getClass() == CoffeeBeans.class) {
+					CoffeeBeans coffeeBeans = (CoffeeBeans) packing.getCoffee();
+					isSizeCoffeeBeans = coffeeBeans.getSizeCoffeeBeans() == sizeCoffeeBeans;
+				}
+			}
+			if (modeOfProduction != null) {
+				if (packing.getCoffee().getClass() == InstantCoffee.class) {
+					InstantCoffee instantCoffee = (InstantCoffee) packing.getCoffee();
+					isModeOfProduction = instantCoffee.getModeOfProduction() == modeOfProduction;
+				}
+			}
+
+			if (grinding == null && sizeCoffeeBeans == null && modeOfProduction == null) {
+				isGrinding = true;
+				isSizeCoffeeBeans = true;
+				isModeOfProduction = true;
+			}
+
+			if (material != null) {
+				isMaterial = packing.getMaterial() == material;
+			} else {
+				isMaterial = true;
+			}
+			
+			if (name != null) {
+				isName = packing.getCoffee().getName().equals(name);
+			} else {
+				isName = true;
+			}
+
+			if (priceMore != -1) {
+				isPriceMore = packing.getCoffee().getPrice() >= priceMore;
+			}
+			if (priceLess != -1) {
+				isPriceLess = packing.getCoffee().getPrice() <= priceLess;
+			}
+
+			if (priceMore != -1 && priceLess != -1) {
+				isPrice = isPriceMore && isPriceLess;
+			} else if (priceMore != -1) {
+				isPrice = isPriceMore;
+			} else if (priceLess != -1) {
+				isPrice = isPriceLess;
+			} else if (priceMore == -1 && priceLess == -1) {
+				isPrice = true;
+			}
+			
+			if (caffeineMore != -1) {
+				isCaffeineMore = packing.getCoffee().getCaffeine() >= caffeineMore;
+			}
+			if (caffeineLess != -1) {
+				isCaffeineLess = packing.getCoffee().getCaffeine() <= caffeineLess;
+			}
+
+			if (caffeineMore != -1 && caffeineLess != -1) {
+				isCaffeine = isCaffeineMore && isCaffeineLess;
+			} else if (caffeineMore != -1) {
+				isCaffeine = isCaffeineMore;
+			} else if (caffeineLess != -1) {
+				isCaffeine = isCaffeineLess;
+			} else if (caffeineMore == -1 && caffeineLess == -1) {
+				isCaffeine = true;
+			}
+
+			if ((isGrinding || isSizeCoffeeBeans || isModeOfProduction) && isName && isPrice && isCaffeine && isMaterial) {
+				result.add(packing);
+			}
+		}
+		return result;
+	}
+
+}
